@@ -33,21 +33,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
-
-  final _pages = [
-    RMCharacters(),
-    RMLocation(),
-    RMEpisode(),
-    RMSettings()
-  ];
-
+  final _pages = [RMCharacters(), RMLocation(), RMEpisode(), RMSettings()];
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -58,52 +50,52 @@ class _MyHomePageState extends State<MyHomePage> {
             BottomNavigationBarItem(
               activeIcon: Image.asset(
                 "assets/images/character_selected.png",
-                width: 24,
-                height: 24,
+                width: 24.0,
+                height: 24.0,
               ),
               icon: Image.asset(
                 "assets/images/character.png",
-                width: 24,
-                height: 24,
+                width: 24.0,
+                height: 24.0,
               ),
               title: Text('Персонажи'),
             ),
             BottomNavigationBarItem(
               activeIcon: Image.asset(
                 "assets/images/location_selected.png",
-                width: 24,
-                height: 24,
+                width: 24.0,
+                height: 24.0,
               ),
               icon: Image.asset(
                 "assets/images/location.png",
-                width: 24,
-                height: 24,
+                width: 24.0,
+                height: 24.0,
               ),
               title: Text('Локации'),
             ),
             BottomNavigationBarItem(
               activeIcon: Image.asset(
                 "assets/images/episode_selected.png",
-                width: 24,
-                height: 24,
+                width: 24.0,
+                height: 24.0,
               ),
               icon: Image.asset(
                 "assets/images/episode.png",
-                width: 24,
-                height: 24,
+                width: 24.0,
+                height: 24.0,
               ),
               title: Text('Эпизоды'),
             ),
             BottomNavigationBarItem(
               activeIcon: Image.asset(
                 "assets/images/settings_selected.png",
-                width: 24,
-                height: 24,
+                width: 24.0,
+                height: 24.0,
               ),
               icon: Image.asset(
                 "assets/images/settings.png",
-                width: 24,
-                height: 24,
+                width: 24.0,
+                height: 24.0,
               ),
               title: Text('Настройки'),
             ),

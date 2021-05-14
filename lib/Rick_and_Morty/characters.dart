@@ -1,7 +1,7 @@
-import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty/configs/theme.dart';
-import 'package:rick_and_morty/fff.dart';
+import 'package:rick_and_morty/items/list.dart';
+
 
 class RMCharacters extends StatefulWidget {
   @override
@@ -11,16 +11,8 @@ class RMCharacters extends StatefulWidget {
 class _RMCharactersState extends State<RMCharacters> {
   TextEditingController editingController = TextEditingController();
 
-  // FocusNode _focus = new FocusNode();
-  ScrollController controller = ScrollController();
   String text = 'Всего персонажей: 200';
   String status_dead = "Мертвый";
-
-  // String status_live = character[index].name;
-
-  _RMCharactersState() {
-    // _focus.addListener(_onFocusChange);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +21,7 @@ class _RMCharactersState extends State<RMCharacters> {
       body: Container(
         child: Column(children: <Widget>[
           _searchBox(),
-          _bnj(),
+          _gridView(),
           Flexible(
               child: Container(
             height: double.infinity,
@@ -37,6 +29,7 @@ class _RMCharactersState extends State<RMCharacters> {
             child: ListView.builder(
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
+              padding: EdgeInsets.zero,
               itemCount: character.length,
               physics: const AlwaysScrollableScrollPhysics(),
               itemBuilder: (context, index) {
@@ -48,23 +41,23 @@ class _RMCharactersState extends State<RMCharacters> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Image.asset(
-                          character[index].imageUrl,
-                          height: 74,
-                          width: 74,
+                          character[index].image,
+                          height: 74.0,
+                          width: 74.0,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
                             left: 16.0,
                           ),
                           child: Container(
-                            height: 56,
+                            height: 56.0,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 character[index].status != null
                                     ? Container(
-                                  height: 16,
-                                      child: (Text(
+                                        height: 16.0,
+                                        child: (Text(
                                           status_live.toUpperCase(),
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
@@ -72,10 +65,10 @@ class _RMCharactersState extends State<RMCharacters> {
                                               color: AppTheme.green,
                                               letterSpacing: 1.5),
                                         )),
-                                    )
+                                      )
                                     : Container(
-                                  height: 16,
-                                      child: (Text(
+                                        height: 16.0,
+                                        child: (Text(
                                           status_dead.toUpperCase(),
                                           textAlign: TextAlign.start,
                                           style: TextStyle(
@@ -83,7 +76,7 @@ class _RMCharactersState extends State<RMCharacters> {
                                               color: AppTheme.red,
                                               letterSpacing: 1.5),
                                         )),
-                                    ),
+                                      ),
 
                                 Container(
                                   height: 24.0,
@@ -102,7 +95,7 @@ class _RMCharactersState extends State<RMCharacters> {
                                     textAlign: TextAlign.start,
                                     style: TextStyle(
                                         fontSize: 12,
-                                        color: AppTheme.additionalText),
+                                        color: AppTheme.additionalText, letterSpacing: 0.5),
                                   ),
                                 ),
                                 // Text(character[index].gender, style: TextStyle(fontSize: 12, color: AppTheme.additionalText),),
@@ -124,8 +117,8 @@ class _RMCharactersState extends State<RMCharacters> {
 
   Widget _searchBox() {
     return new Container(
-      margin: const EdgeInsets.only(top: 54, left: 16, right: 16),
-      height: 48,
+      margin: const EdgeInsets.only(top: 54.0, left: 16.0, right: 16.0),
+      height: 48.0,
       decoration: BoxDecoration(
         color: AppTheme.controller,
         borderRadius: BorderRadius.circular(32),
@@ -134,13 +127,29 @@ class _RMCharactersState extends State<RMCharacters> {
         decoration: InputDecoration(
           hintStyle: TextStyle(fontSize: 16, color: AppTheme.additionalText),
           hintText: 'Найти персонажа',
-          suffixIcon: Icon(
-            Icons.filter_alt_outlined,
-            color: AppTheme.additionalText,
+          icon: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(
+              "assets/images/search.png",
+              height: 24,
+            ),
           ),
-          prefixIcon: Icon(
-            Icons.search,
-            color: AppTheme.additionalText,
+          suffixIcon: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween, // added line
+              mainAxisSize: MainAxisSize.min, // added line
+              children: <Widget>[
+                Image.asset(
+                  "assets/images/line.png",
+                  height: 24.0,
+                ),
+                Image.asset(
+                  "assets/images/filter_sort.png",
+                  height: 24.0,
+                ),
+              ],
+            ),
           ),
           border: InputBorder.none,
         ),
@@ -148,9 +157,9 @@ class _RMCharactersState extends State<RMCharacters> {
     );
   }
 
-  Widget _bnj() {
+  Widget _gridView() {
     return Padding(
-      padding: const EdgeInsets.only(top: 16, right: 16, left: 16),
+      padding: const EdgeInsets.only(top: 16.0, right: 16.0, left: 16.0),
       child: new Container(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -162,10 +171,13 @@ class _RMCharactersState extends State<RMCharacters> {
                   color: AppTheme.additionalText,
                   letterSpacing: 1.5),
             ),
-            Icon(
-              Icons.grid_view,
-              color: AppTheme.additionalText,
-            )
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: Image.asset(
+                "assets/images/grid.png",
+                height: 24,
+              ),
+            ),
           ],
         ),
       ),

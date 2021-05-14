@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:rick_and_morty/configs/utils.dart';
 
 class AppTheme {
-  ///Optional Color
   static Color white = Colors.white;
   static Color black = Colors.black;
   static Color green = HexColor.fromHex("#43D049");
